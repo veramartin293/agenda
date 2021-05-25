@@ -17375,8 +17375,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         favorite: false,
         id: null
       },
-      haveAny: true
+      haveAnyContacts: true
     };
+  },
+  watch: {
+    contacts: {
+      handler: function handler(val) {
+        if (val.length === 0) {
+          this.haveAnyContacts = false;
+          console.log('No contacts', val);
+        } else {
+          this.haveAnyContacts = true;
+          console.log('Cpntacts', val);
+        }
+      },
+      deep: true
+    }
   },
   created: function created() {
     this.getAllContacts();
@@ -17404,7 +17418,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context.sent;
 
                 if (!response.ok) {
-                  _context.next = 12;
+                  _context.next = 11;
                   break;
                 }
 
@@ -17414,18 +17428,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 responseData = _context.sent;
                 _this.contacts = responseData;
-
-                if (responseData.length === 0) {
-                  _this.haveAny = false;
-                }
-
-                _context.next = 13;
+                _context.next = 12;
                 break;
 
-              case 12:
+              case 11:
                 console.log('Ha occurrido un error en el servidor');
 
-              case 13:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -18071,7 +18080,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_contact_form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("contact-form");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [!$data.haveAny ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("h2", _hoisted_2, "Lo sentimos, no tienes contactos en tu lista")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.TransitionGroup, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [!$data.haveAnyContacts ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("h2", _hoisted_2, "Lo sentimos, no tienes contactos en tu lista")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.TransitionGroup, {
     name: "card-transition"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -18138,8 +18147,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var _withId = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.withScopeId)("data-v-00e9450a");
 
+(0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-00e9450a");
+
+var _hoisted_1 = {
+  "class": "user-name"
+};
+
+(0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
+
 var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.getters.user.name), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.getters.user.name), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     onClick: _cache[1] || (_cache[1] = function () {
@@ -18474,7 +18491,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-00e9450a] {\r\n    display: flex;\r\n    justify-content: flex-end;\r\n    width: 33.33%;\r\n    align-items: center;\n}\nh2[data-v-00e9450a] {\r\n    margin-right: 5px;\n}\nbutton[data-v-00e9450a] {\r\n    background-color: transparent;\r\n    border: none;\r\n    font-size: 14px;\r\n    transition: all 0.3s ease;\n}\nbutton[data-v-00e9450a]:hover {\r\n    background-color: rgb(59, 59, 59);;\r\n    color: white;\r\n    cursor: pointer;\n}\r\n\r\n/* Responsive */\n@media (max-width: 600px){\nh2[data-v-00e9450a], button[data-v-00e9450a] {\r\n        transform: scale(0.8);\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.user-name[data-v-00e9450a] {\r\n    text-transform: capitalize;\n}\ndiv[data-v-00e9450a] {\r\n    display: flex;\r\n    justify-content: flex-end;\r\n    width: 33.33%;\r\n    align-items: center;\n}\nh2[data-v-00e9450a] {\r\n    margin-right: 5px;\n}\nbutton[data-v-00e9450a] {\r\n    background-color: transparent;\r\n    border: none;\r\n    font-size: 14px;\r\n    transition: all 0.3s ease;\n}\nbutton[data-v-00e9450a]:hover {\r\n    background-color: rgb(59, 59, 59);;\r\n    color: white;\r\n    cursor: pointer;\n}\r\n\r\n/* Responsive */\n@media (max-width: 600px){\nh2[data-v-00e9450a], button[data-v-00e9450a] {\r\n        transform: scale(0.8);\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

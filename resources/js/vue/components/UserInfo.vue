@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>{{$store.getters.user.name}}</h2>
+        <h2 class="user-name">{{$store.getters.user.name}}</h2>
         <button @click="logout">Cerrar sesión</button>
     </div>
 </template>
@@ -29,6 +29,10 @@ export default {
 </script>
 
 <style scoped>
+.user-name {
+    text-transform: capitalize;
+}
+
 div {
     display: flex;
     justify-content: flex-end;

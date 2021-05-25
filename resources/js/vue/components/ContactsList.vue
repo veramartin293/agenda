@@ -1,7 +1,7 @@
 <template>
     <div class="contacts-list">
 
-        <h2 v-if="!haveAny">Lo sentimos, no tienes contactos en tu lista</h2>
+        <h2 v-if="!haveAnyContacts">Lo sentimos, no tienes contactos en tu lista</h2>
 
         <div class="contacts-container">
             <transition-group name="card-transition">
@@ -51,9 +51,24 @@ export default {
                 phone: '',
                 email: '',
                 favorite: false,
-                id: null
+                id: null,
+                
             },
-            haveAny: true
+            haveAnyContacts: true
+        }
+    },
+    watch: {
+        contacts: {
+            handler(val) {
+                if (val.length === 0) {
+                    this.haveAnyContacts = false;
+                    console.log('No contacts', val)
+                } else {
+                    this.haveAnyContacts = true;
+                    console.log('Cpntacts', val);
+                }
+            },
+            deep: true
         }
     },
     created() {
@@ -73,9 +88,6 @@ export default {
             if (response.ok) {
                 const responseData = await response.json();
                 this.contacts = responseData;
-                if (responseData.length === 0) {
-                    this.haveAny = false;
-                }
             } else {
                 console.log('Ha occurrido un error en el servidor');
             }
